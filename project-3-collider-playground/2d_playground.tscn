@@ -2,16 +2,20 @@
 
 [ext_resource type="Script" uid="uid://ct8gakfjbx0ee" path="res://player.gd" id="1_hgj7b"]
 [ext_resource type="Texture2D" uid="uid://b23k1vbr3v0w1" path="res://Assets/sandpiper_chick-16x.png" id="2_em4hi"]
+[ext_resource type="Texture2D" uid="uid://6feo4r7ktsnm" path="res://Assets/sandtexturebottom-8x.png" id="2_uw3qr"]
 [ext_resource type="Texture2D" uid="uid://ck0rnv6ci0wie" path="res://Assets/surfboard-16x.png" id="3_3mwtm"]
 [ext_resource type="Texture2D" uid="uid://dvagm6kkqs4r1" path="res://Assets/clam_small-16x.png" id="4_em4hi"]
 [ext_resource type="Texture2D" uid="uid://bj7efnsyvl824" path="res://Assets/clam_big-16x.png" id="4_uw3qr"]
 [ext_resource type="Texture2D" uid="uid://q26l6mh7n1kr" path="res://Assets/hermit_crab-16x.png" id="5_lxs3c"]
 [ext_resource type="Texture2D" uid="uid://cv55l67bj2g5q" path="res://Assets/sandpiper_chick-16x_flipped.png" id="6_3mwtm"]
+[ext_resource type="Texture2D" uid="uid://cr7bangfayang" path="res://Assets/powerful-ocean-wave-crashing-wat.png" id="9_lxs3c"]
+[ext_resource type="Script" uid="uid://wcv4rcg15k3g" path="res://cowabunga_zone.gd" id="9_uy2es"]
+[ext_resource type="Script" uid="uid://bexpwouk04gxh" path="res://tidal_wave.gd" id="10_53e0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxyc4"]
 size = Vector2(288, 34)
 
-[sub_resource type="BoxMesh" id="BoxMesh_0fbbt"]
+[sub_resource type="QuadMesh" id="QuadMesh_uw3qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0fbbt"]
 
@@ -38,11 +42,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82ao8"]
 size = Vector2(58.5, 78)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bclsa"]
-size = Vector2(50, 40)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj4cr"]
 size = Vector2(28, 659)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txvy8"]
 
 [node name="2D Playground" type="Node2D" unique_id=1497765953]
 
@@ -64,7 +67,8 @@ shape = SubResource("RectangleShape2D_mxyc4")
 [node name="SandMesh" type="MeshInstance2D" parent="Sand" unique_id=124092749]
 position = Vector2(576, 600)
 scale = Vector2(1152, 128)
-mesh = SubResource("BoxMesh_0fbbt")
+mesh = SubResource("QuadMesh_uw3qr")
+texture = ExtResource("2_uw3qr")
 
 [node name="SandColl" type="CollisionShape2D" parent="Sand" unique_id=709095713]
 position = Vector2(576, 600)
@@ -119,13 +123,9 @@ position = Vector2(157.00003, 173)
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_0fbbt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1085433900]
+[node name="PlayerColl" type="CollisionShape2D" parent="Player" unique_id=1085433900]
 position = Vector2(138, 192)
 shape = SubResource("RectangleShape2D_82ao8")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" unique_id=265990095]
-position = Vector2(170, 138)
-shape = SubResource("RectangleShape2D_bclsa")
 
 [node name="Barrier" type="StaticBody2D" parent="." unique_id=654495519]
 position = Vector2(655, 234)
@@ -137,3 +137,26 @@ shape = SubResource("RectangleShape2D_yj4cr")
 [node name="EastBarrier" type="CollisionShape2D" parent="Barrier" unique_id=812658554]
 position = Vector2(509, 98.5)
 shape = SubResource("RectangleShape2D_yj4cr")
+
+[node name="CowabungaZone" type="Area2D" parent="." unique_id=1468233080]
+script = ExtResource("9_uy2es")
+
+[node name="CowabungaColl" type="CollisionShape2D" parent="CowabungaZone" unique_id=1214875520]
+position = Vector2(890, 350)
+scale = Vector2(6, 0.5)
+shape = SubResource("RectangleShape2D_txvy8")
+
+[node name="TidalWave" type="Area2D" parent="." unique_id=1727883918]
+script = ExtResource("10_53e0m")
+
+[node name="WaveSprite" type="Sprite2D" parent="TidalWave" unique_id=2102228387]
+position = Vector2(717, 143)
+scale = Vector2(3, 3)
+texture = ExtResource("9_lxs3c")
+
+[node name="WaveColl" type="CollisionPolygon2D" parent="TidalWave" unique_id=2122298743]
+position = Vector2(750, 540)
+polygon = PackedVector2Array(-4, -5, 151, -110, 225, -207, 256, -330, 221, -438, 137, -495, 150, -542, 405, -540, 400, 109)
+
+[connection signal="body_entered" from="CowabungaZone" to="CowabungaZone" method="_on_body_entered"]
+[connection signal="body_entered" from="TidalWave" to="TidalWave" method="_on_body_entered"]
