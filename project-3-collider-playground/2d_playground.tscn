@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://bce10e76e3st0"]
+
+[ext_resource type="Script" uid="uid://ct8gakfjbx0ee" path="res://player.gd" id="1_hgj7b"]
+[ext_resource type="Texture2D" uid="uid://b23k1vbr3v0w1" path="res://Assets/sandpiper_chick-16x.png" id="2_em4hi"]
+[ext_resource type="Texture2D" uid="uid://ck0rnv6ci0wie" path="res://Assets/surfboard-16x.png" id="3_3mwtm"]
+[ext_resource type="Texture2D" uid="uid://dvagm6kkqs4r1" path="res://Assets/clam_small-16x.png" id="4_em4hi"]
+[ext_resource type="Texture2D" uid="uid://bj7efnsyvl824" path="res://Assets/clam_big-16x.png" id="4_uw3qr"]
+[ext_resource type="Texture2D" uid="uid://q26l6mh7n1kr" path="res://Assets/hermit_crab-16x.png" id="5_lxs3c"]
+[ext_resource type="Texture2D" uid="uid://cv55l67bj2g5q" path="res://Assets/sandpiper_chick-16x_flipped.png" id="6_3mwtm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxyc4"]
+size = Vector2(288, 34)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0fbbt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fbbt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1o4x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fbbt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxyc4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0fbbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_3mwtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_em4hi")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82ao8"]
+size = Vector2(58.5, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bclsa"]
+size = Vector2(50, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj4cr"]
+size = Vector2(28, 659)
+
+[node name="2D Playground" type="Node2D" unique_id=1497765953]
+
+[node name="Surfboard" type="StaticBody2D" parent="." unique_id=1432962763]
+position = Vector2(60, -100)
+
+[node name="SurfboardSprite" type="Sprite2D" parent="Surfboard" unique_id=1324266923]
+position = Vector2(828, 476)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_3mwtm")
+
+[node name="SurfboardColl" type="CollisionShape2D" parent="Surfboard" unique_id=1865896871]
+position = Vector2(828, 479.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_mxyc4")
+
+[node name="Sand" type="StaticBody2D" parent="." unique_id=246009306]
+
+[node name="SandMesh" type="MeshInstance2D" parent="Sand" unique_id=124092749]
+position = Vector2(576, 600)
+scale = Vector2(1152, 128)
+mesh = SubResource("BoxMesh_0fbbt")
+
+[node name="SandColl" type="CollisionShape2D" parent="Sand" unique_id=709095713]
+position = Vector2(576, 600)
+scale = Vector2(57.5, 6.5)
+shape = SubResource("RectangleShape2D_0fbbt")
+
+[node name="HermitCrab" type="StaticBody2D" parent="." unique_id=1773582317]
+position = Vector2(421, 81)
+
+[node name="CrabSprite" type="Sprite2D" parent="HermitCrab" unique_id=646535778]
+position = Vector2(227.00002, 408)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_lxs3c")
+
+[node name="CrabColl" type="CollisionShape2D" parent="HermitCrab" unique_id=678453185]
+position = Vector2(220, 415)
+scale = Vector2(4.5, 4)
+shape = SubResource("RectangleShape2D_i1o4x")
+
+[node name="MiniClam" type="StaticBody2D" parent="." unique_id=949750361]
+position = Vector2(58, 6)
+
+[node name="MClamSprite" type="Sprite2D" parent="MiniClam" unique_id=851965044]
+position = Vector2(192.99998, 518.99994)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_em4hi")
+
+[node name="MClamColl" type="CollisionShape2D" parent="MiniClam" unique_id=793332132]
+position = Vector2(192, 519)
+scale = Vector2(3, 2)
+shape = SubResource("CircleShape2D_0fbbt")
+
+[node name="Clam" type="StaticBody2D" parent="." unique_id=838226498]
+position = Vector2(-315, -26)
+
+[node name="ClamSprite" type="Sprite2D" parent="Clam" unique_id=1150202881]
+position = Vector2(486, 539)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_uw3qr")
+
+[node name="ClamColl" type="CollisionShape2D" parent="Clam" unique_id=209715436]
+position = Vector2(486, 540)
+scale = Vector2(4.5, 3.8)
+shape = SubResource("CircleShape2D_mxyc4")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1942104988]
+position = Vector2(-100, 0)
+script = ExtResource("1_hgj7b")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Player" unique_id=6922339]
+position = Vector2(157.00003, 173)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_0fbbt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1085433900]
+position = Vector2(138, 192)
+shape = SubResource("RectangleShape2D_82ao8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" unique_id=265990095]
+position = Vector2(170, 138)
+shape = SubResource("RectangleShape2D_bclsa")
+
+[node name="Barrier" type="StaticBody2D" parent="." unique_id=654495519]
+position = Vector2(655, 234)
+
+[node name="EastBarrier2" type="CollisionShape2D" parent="Barrier" unique_id=449550322]
+position = Vector2(-668, 100)
+shape = SubResource("RectangleShape2D_yj4cr")
+
+[node name="EastBarrier" type="CollisionShape2D" parent="Barrier" unique_id=812658554]
+position = Vector2(509, 98.5)
+shape = SubResource("RectangleShape2D_yj4cr")
