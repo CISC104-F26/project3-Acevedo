@@ -116,6 +116,7 @@ shape = SubResource("CircleShape2D_mxyc4")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1942104988]
 position = Vector2(-100, 0)
+collision_layer = 2
 script = ExtResource("1_hgj7b")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player" unique_id=6922339]
@@ -139,6 +140,7 @@ position = Vector2(509, 98.5)
 shape = SubResource("RectangleShape2D_yj4cr")
 
 [node name="CowabungaZone" type="Area2D" parent="." unique_id=1468233080]
+collision_mask = 2
 script = ExtResource("9_uy2es")
 
 [node name="CowabungaColl" type="CollisionShape2D" parent="CowabungaZone" unique_id=1214875520]
@@ -147,6 +149,7 @@ scale = Vector2(6, 0.5)
 shape = SubResource("RectangleShape2D_txvy8")
 
 [node name="TidalWave" type="Area2D" parent="." unique_id=1727883918]
+collision_mask = 2
 script = ExtResource("10_53e0m")
 
 [node name="WaveSprite" type="Sprite2D" parent="TidalWave" unique_id=2102228387]
@@ -156,7 +159,7 @@ texture = ExtResource("9_lxs3c")
 
 [node name="WaveColl" type="CollisionPolygon2D" parent="TidalWave" unique_id=2122298743]
 position = Vector2(750, 540)
-polygon = PackedVector2Array(-4, -5, 151, -110, 225, -207, 256, -330, 221, -438, 137, -495, 150, -542, 405, -540, 400, 109)
+polygon = PackedVector2Array(8, -11, 160, -126, 185, -156, 214, -212, 256, -330, 221, -438, 137, -495, 150, -542, 405, -540, 398, -15)
 
 [connection signal="body_entered" from="CowabungaZone" to="CowabungaZone" method="_on_body_entered"]
 [connection signal="body_entered" from="TidalWave" to="TidalWave" method="_on_body_entered"]
