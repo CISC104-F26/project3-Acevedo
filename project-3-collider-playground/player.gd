@@ -23,3 +23,22 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+
+
+
+func _on_cowabunga_zone_body_entered(body: Node2D) -> void:
+	print("I'm totally tubular!")
+
+
+func _on_tidal_wave_body_entered(body: Node2D) -> void:
+	print("I died.")
+
+
+func _on_cowabunga_zone_body_exited(body: Node2D) -> void:
+	print("I'm not totally tubular anymore...")
+
+
+func _on_tidal_wave_body_exited(body: Node2D) -> void:
+	print("I'm alive!")

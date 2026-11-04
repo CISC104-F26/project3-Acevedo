@@ -12,5 +12,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("You died.")
+	print("Wipeout!")
 	pass
+
+
+func _on_body_exited(body: Node2D) -> void:
+	print("You made it back to shore!")

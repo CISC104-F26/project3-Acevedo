@@ -161,5 +161,11 @@ texture = ExtResource("9_lxs3c")
 position = Vector2(750, 540)
 polygon = PackedVector2Array(8, -11, 160, -126, 185, -156, 214, -212, 256, -330, 221, -438, 137, -495, 150, -542, 405, -540, 398, -15)
 
+[connection signal="body_entered" from="CowabungaZone" to="Player" method="_on_cowabunga_zone_body_entered"]
 [connection signal="body_entered" from="CowabungaZone" to="CowabungaZone" method="_on_body_entered"]
+[connection signal="body_exited" from="CowabungaZone" to="Player" method="_on_cowabunga_zone_body_exited"]
+[connection signal="body_exited" from="CowabungaZone" to="CowabungaZone" method="_on_body_exited"]
+[connection signal="body_entered" from="TidalWave" to="Player" method="_on_tidal_wave_body_entered"]
 [connection signal="body_entered" from="TidalWave" to="TidalWave" method="_on_body_entered"]
+[connection signal="body_exited" from="TidalWave" to="Player" method="_on_tidal_wave_body_exited"]
+[connection signal="body_exited" from="TidalWave" to="TidalWave" method="_on_body_exited"]

@@ -14,3 +14,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	print("Cowabunga, dude!")
 	pass
+
+func _on_body_exited(body: Node2D) -> void:
+	print("No more cowabunga, dude...")
