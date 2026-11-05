@@ -26,3 +26,23 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_hank_hill_body_entered(body: Node3D) -> void:
+	print("I sell propane and propane accessories.")
+	pass # Replace with function body.
+
+
+func _on_hank_hill_body_exited(body: Node3D) -> void:
+	print("God dangit, Bobby!")
+	pass # Replace with function body.
+
+
+func _on_top_wall_body_entered(body: Node3D) -> void:
+	print("I feel like I'm not supposed to be here...")
+	pass # Replace with function body.
+
+
+func _on_top_wall_body_exited(body: Node3D) -> void:
+	print("I'm falling!!!")
+	pass # Replace with function body.

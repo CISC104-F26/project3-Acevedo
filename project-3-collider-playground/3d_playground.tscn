@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cw2mlkoqsdpu7"]
 
 [ext_resource type="Script" uid="uid://b685myk2js5p" path="res://player_3d.gd" id="1_8tqwl"]
+[ext_resource type="Script" uid="uid://b83kgwu7gnrtl" path="res://top_wall.gd" id="2_8xswo"]
+[ext_resource type="Script" uid="uid://cueurwwudasw3" path="res://hank_hill.gd" id="3_ba1s6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvf64"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,6 +40,8 @@ sky = SubResource("Sky_8tqwl")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mxyc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1o4x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4sxkl"]
 
 [node name="3D Playground" type="Node3D" unique_id=208262364]
 
@@ -101,6 +105,8 @@ mesh = SubResource("CylinderMesh_jefae")
 
 [node name="Player3D" type="CharacterBody3D" parent="." unique_id=904250281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -3)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_8tqwl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D" unique_id=1705243586]
@@ -113,11 +119,28 @@ mesh = SubResource("CapsuleMesh_mxyc4")
 transform = Transform3D(0.99834126, 0, -0.057574008, 0, 1, 0, 0.057574008, 0, 0.99834126, -0.45968795, 2.0622761, 4.5961027)
 
 [node name="TopWall" type="Area3D" parent="." unique_id=720696660]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_8xswo")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TopWall" unique_id=1059434077]
+[node name="TopWallColl" type="CollisionShape3D" parent="TopWall" unique_id=1059434077]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -5)
 shape = SubResource("BoxShape3D_i1o4x")
 
 [node name="HankHill" type="Area3D" parent="." unique_id=1140574088]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_ba1s6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HankHill" unique_id=793581125]
+[node name="HankHillColl" type="CollisionShape3D" parent="HankHill" unique_id=793581125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 2)
+shape = SubResource("CylinderShape3D_4sxkl")
+
+[connection signal="body_entered" from="TopWall" to="Player3D" method="_on_top_wall_body_entered"]
+[connection signal="body_entered" from="TopWall" to="TopWall" method="_on_body_entered"]
+[connection signal="body_exited" from="TopWall" to="Player3D" method="_on_top_wall_body_exited"]
+[connection signal="body_exited" from="TopWall" to="TopWall" method="_on_body_exited"]
+[connection signal="body_entered" from="HankHill" to="Player3D" method="_on_hank_hill_body_entered"]
+[connection signal="body_entered" from="HankHill" to="HankHill" method="_on_body_entered"]
+[connection signal="body_exited" from="HankHill" to="Player3D" method="_on_hank_hill_body_exited"]
+[connection signal="body_exited" from="HankHill" to="HankHill" method="_on_body_exited"]
