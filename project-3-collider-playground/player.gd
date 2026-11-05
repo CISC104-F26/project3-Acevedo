@@ -35,6 +35,7 @@ func _on_cowabunga_zone_body_entered(body: Node2D) -> void:
 
 func _on_tidal_wave_body_entered(body: Node2D) -> void:
 	print("I died.")
+	$PlayerSprite.self_modulate = Color(0,0,0)
 	$Death.visible = true
 
 
@@ -46,4 +47,5 @@ func _on_cowabunga_zone_body_exited(body: Node2D) -> void:
 
 func _on_tidal_wave_body_exited(body: Node2D) -> void:
 	print("I'm alive!")
+	$PlayerSprite.self_modulate = Color(1,1,1)
 	$Death.visible = false
