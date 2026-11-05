@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cctbrwbk23c8m"]
+
+[ext_resource type="Script" uid="uid://bi2es8olfskgw" path="res://shrinking_object.gd" id="1_4d1f4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mxyc4"]
+bounce = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0fbbt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fbbt"]
+
+[node name="Shrinking Object" type="RigidBody2D" unique_id=932481196]
+physics_material_override = SubResource("PhysicsMaterial_mxyc4")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_4d1f4")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1732306342]
+scale = Vector2(100, 100)
+mesh = SubResource("SphereMesh_0fbbt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=873748491]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_0fbbt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bce10e76e3st0"]
 
 [ext_resource type="Script" uid="uid://ct8gakfjbx0ee" path="res://player.gd" id="1_hgj7b"]
+[ext_resource type="Texture2D" uid="uid://dpsxe8apscc7l" path="res://Assets/photo-1507525428034-b723cf961d3e.png" id="1_nu43a"]
 [ext_resource type="Texture2D" uid="uid://b23k1vbr3v0w1" path="res://Assets/sandpiper_chick-16x.png" id="2_em4hi"]
 [ext_resource type="Texture2D" uid="uid://6feo4r7ktsnm" path="res://Assets/sandtexturebottom-8x.png" id="2_uw3qr"]
 [ext_resource type="Texture2D" uid="uid://ck0rnv6ci0wie" path="res://Assets/surfboard-16x.png" id="3_3mwtm"]
@@ -11,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://cr7bangfayang" path="res://Assets/powerful-ocean-wave-crashing-wat.png" id="9_lxs3c"]
 [ext_resource type="Script" uid="uid://wcv4rcg15k3g" path="res://cowabunga_zone.gd" id="9_uy2es"]
 [ext_resource type="Script" uid="uid://bexpwouk04gxh" path="res://tidal_wave.gd" id="10_53e0m"]
+[ext_resource type="Texture2D" uid="uid://de13cwu8em1dh" path="res://Assets/cowabunga_sandpiper-16x.png" id="10_57re3"]
+[ext_resource type="Texture2D" uid="uid://bq4gm6rv7x8so" path="res://Assets/skull.png" id="11_vacuj"]
+[ext_resource type="PackedScene" uid="uid://cctbrwbk23c8m" path="res://shrinking_object.tscn" id="12_53e0m"]
+[ext_resource type="PackedScene" uid="uid://be0fpcjrsrt4c" path="res://color_changer.tscn" id="13_3suc2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxyc4"]
 size = Vector2(288, 34)
@@ -33,6 +38,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_em4hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_57re3")
 }],
 "loop": 1,
 "name": &"default",
@@ -48,6 +56,11 @@ size = Vector2(28, 659)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txvy8"]
 
 [node name="2D Playground" type="Node2D" unique_id=1497765953]
+
+[node name="BG" type="Sprite2D" parent="." unique_id=905836508]
+position = Vector2(512, 300)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nu43a")
 
 [node name="Surfboard" type="StaticBody2D" parent="." unique_id=1432962763]
 position = Vector2(60, -100)
@@ -128,6 +141,20 @@ sprite_frames = SubResource("SpriteFrames_0fbbt")
 position = Vector2(138, 192)
 shape = SubResource("RectangleShape2D_82ao8")
 
+[node name="CowabungaDude" type="Label" parent="Player" unique_id=897313412]
+visible = false
+offset_left = 82.0
+offset_top = 77.0
+offset_right = 225.0
+offset_bottom = 100.0
+text = "Cowabunga, dude!"
+
+[node name="Death" type="Sprite2D" parent="Player" unique_id=1076366212]
+visible = false
+position = Vector2(188, 136)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("11_vacuj")
+
 [node name="Barrier" type="StaticBody2D" parent="." unique_id=654495519]
 position = Vector2(655, 234)
 
@@ -160,6 +187,12 @@ texture = ExtResource("9_lxs3c")
 [node name="WaveColl" type="CollisionPolygon2D" parent="TidalWave" unique_id=2122298743]
 position = Vector2(750, 540)
 polygon = PackedVector2Array(8, -11, 160, -126, 185, -156, 214, -212, 256, -330, 221, -438, 137, -495, 150, -542, 405, -540, 398, -15)
+
+[node name="Shrinking Object" parent="." unique_id=932481196 instance=ExtResource("12_53e0m")]
+position = Vector2(660, 350)
+
+[node name="ColorChanger" parent="." unique_id=1426780623 instance=ExtResource("13_3suc2")]
+position = Vector2(171, 100)
 
 [connection signal="body_entered" from="CowabungaZone" to="Player" method="_on_cowabunga_zone_body_entered"]
 [connection signal="body_entered" from="CowabungaZone" to="CowabungaZone" method="_on_body_entered"]

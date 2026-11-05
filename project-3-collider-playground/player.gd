@@ -30,15 +30,20 @@ func _physics_process(delta: float) -> void:
 
 func _on_cowabunga_zone_body_entered(body: Node2D) -> void:
 	print("I'm totally tubular!")
-
+	$PlayerSprite.frame = 2
+	$CowabungaDude.visible = true
 
 func _on_tidal_wave_body_entered(body: Node2D) -> void:
 	print("I died.")
+	$Death.visible = true
 
 
 func _on_cowabunga_zone_body_exited(body: Node2D) -> void:
 	print("I'm not totally tubular anymore...")
+	$PlayerSprite.frame = 0
+	$CowabungaDude.visible = false
 
 
 func _on_tidal_wave_body_exited(body: Node2D) -> void:
 	print("I'm alive!")
+	$Death.visible = false

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://be0fpcjrsrt4c"]
+
+[ext_resource type="Script" uid="uid://blflevqvjntj6" path="res://color_changer.gd" id="1_lsbtj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i1o4x"]
+bounce = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0fbbt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxyc4"]
+
+[node name="ColorChanger" type="RigidBody2D" unique_id=1426780623]
+physics_material_override = SubResource("PhysicsMaterial_i1o4x")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_lsbtj")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=114611930]
+scale = Vector2(40, 40)
+mesh = SubResource("SphereMesh_0fbbt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1031766083]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_mxyc4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
